@@ -1,0 +1,31 @@
+<apex:page controller="AllProductTableController">
+    <apex:form >
+        <apex:pageBlock >
+            <apex:pageBlockTable value="{!products}" var="product">
+                <apex:column width="200" headerValue="Products">
+                    <apex:image value="{!product.Image_URL__c}" width="200" height="200"/>
+                </apex:column>
+                <apex:column width="200" style="text-align: center">
+                	<apex:commandLink action="{!URLFOR('/apex/OneProductPage?id=' + product.Id)}">
+                        <apex:outputText style="color: #20307d" value="{!product.Name}"/>
+                    </apex:commandLink>
+                </apex:column>
+
+                <apex:column headerValue="Description">
+                    <apex:outputField value="{!product.Product_Description__c}"/>
+                    <apex:commandLink action="{!URLFOR('/apex/OneProductPage?id=' + product.Id)}">
+                        <apex:outputText style="color: #20307d" value="More"/>
+                    </apex:commandLink>
+                </apex:column>
+                
+                <apex:column width="300" headerValue="Cost">
+                    <apex:outputField value="{!product.Unit_Price__c}" />$
+                </apex:column>
+                
+                <apex:column width="100" >
+                    <apex:commandButton style="background:#7185eb63; border: 1px solid black; padding: 5px;  width: 150px;" value="Buy" action="{!URLFOR('/apex/MakingPurchaseOfProduct?id=' + product.Id)}"/>
+                </apex:column>
+            </apex:pageBlockTable>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

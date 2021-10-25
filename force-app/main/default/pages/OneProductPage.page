@@ -1,0 +1,19 @@
+<apex:page controller="OneProductController">
+    <apex:form >
+        <apex:pageBlock title="{!product.Name}">
+            <apex:pageBlockSection columns="2">
+                <apex:image value="{!product.Image_URL__c}" width="500" height="500"/>
+                <apex:pageBlockSection columns="1" >
+                    <apex:outputText value="{!product.Name}"/>
+                    <apex:outputText value="{!product.Unit_Price__c}"/>
+                    <apex:outputText value="{!product.Units_Available__c}" />
+                    <apex:outputField value="{!product.Product_Description__c}"/>
+            	</apex:pageBlockSection>
+            </apex:pageBlockSection>
+            <apex:pageBlockSection columns="2">
+                <apex:commandButton style="position: absolute; top: 600px; left: 100px; width: 150px; border: 1px solid black; background:#7185eb63; padding: 5px;" value="Cancel" action="{!URLFOR('/apex/AllProducttablePage')}"/>
+            	<apex:commandButton style="position: absolute; top: 600px; right: 100px; width: 150px; border: 1px solid black;background:#7185eb63; padding: 5px;" value="Buy" action="{!URLFOR('/apex/MakingPurchaseOfProduct?id=' + productId)}"/>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

@@ -1,0 +1,47 @@
+<apex:page controller="OneProductController" docType="html-5.0">
+    <apex:form >
+        <style>
+           .One
+             {
+            margin:20px;
+            padding:10px;
+            width:600px;
+            height:10px;
+            baclground-color:blue;
+			text-align:center;
+             }
+        </style>
+        <apex:pageBlock >
+            <apex:actionFunction name="changeTotalAmount" action="{!setTotalAmount}" reRender="ProductTable, totalAmount"/>
+            <div class="One">
+            	<h1>Contact Info</h1>    
+            </div>
+            <apex:pageBlockSection columns="1">
+                <apex:inputField value="{!con.FirstName}"/>
+                <apex:inputField value="{!con.LastName}"/>
+                <apex:inputField value="{!con.Email}"/>
+            </apex:pageBlockSection>
+            <hr/>
+            <dir class="One"> 
+            	<h1>Product Info</h1>
+            </dir>
+            <apex:pageBlockSection columns="1" Id="ProductTable">
+                <apex:outputField value="{!product.Name}"/>
+                <apex:pageBlockSection columns="2">
+                	<span style="position: absolute; left:270px;top: 260px; width: 200px; padding: 10px; margin:2px;">Unit Count:</span>
+                    <apex:input type="number" style="position: absolute; top: 270px; left: 360px;" value="{!unitCount}" onchange="changeTotalAmount();" />
+                </apex:pageBlockSection>
+                <apex:pageBlockSection columns="2">
+                    <span style="position: absolute; left:270px;top: 290px; width: 200px; padding: 10px; margin:2px;"> Total Amount:</span>
+                    <apex:outputText style="position: absolute; top: 302px; left: 360px;" value="{!totalAmount}" Id="totalAmount"/>
+                </apex:pageBlockSection>
+            </apex:pageBlockSection>
+            <apex:pageBlockSection columns="3">
+                <apex:commandButton style="position: absolute; top: 380px; left: 10px; width: 150px; background:#7185eb63; border: 1px solid black; padding: 5px;" value="Cancel" action="{!URLFOR('/apex/AllProducttablePage')}"/>
+                <apex:outputText ></apex:outputText>
+                <apex:commandButton style="position: absolute; top: 380px; right: 10px; width: 150px; background:#7185eb63; border: 1px solid black; padding: 5px;" value="Place Order" action="{!placeOrder}"/> 
+            </apex:pageBlockSection>
+            <apex:pageMessages id="showmsg"></apex:pageMessages>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>
